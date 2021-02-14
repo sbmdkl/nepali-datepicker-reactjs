@@ -1,5 +1,5 @@
 {
-  "name": "nepali-datepicker-reactjs-example",
+  "name": "@sbmdkl/nepali-datepicker-reactjs-example",
   "homepage": ".",
   "version": "0.0.0",
   "private": true,
@@ -13,7 +13,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "link:../node_modules/react-scripts",
-    "nepali-datepicker-reactjs": "link:.."
+    "@sbmdkl/nepali-datepicker-reactjs": "link:.."
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"

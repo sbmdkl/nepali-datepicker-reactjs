@@ -1,6 +1,6 @@
 {
-  "short_name": "nepali-datepicker-reactjs",
-  "name": "nepali-datepicker-reactjs",
+  "short_name": "@sbmdkl/nepali-datepicker-reactjs",
+  "name": "@sbmdkl/nepali-datepicker-reactjs",
   "icons": [
     {
       "src": "favicon.ico",

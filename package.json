@@ -1,10 +1,10 @@
 {
-  "name": "nepali-datepicker-reactjs",
+  "name": "@sbmdkl/nepali-datepicker-reactjs",
   "version": "1.0.0",
-  "description": "Nepali DatePicker Reactjs",
+  "description": "Nepali Datepicker Reactjs",
   "author": "Shubham Dhakal",
   "license": "MIT",
-  "repository": "Shubham Dhakal/nepali-datepicker-reactjs",
+  "repository": "sbmdkl/nepali-datepicker-reactjs",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",

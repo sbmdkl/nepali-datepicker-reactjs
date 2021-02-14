@@ -1,13 +1,13 @@
-# nepali-datepicker-reactjs
+# @sbmdkl/nepali-datepicker-reactjs
 
-> Nepali DatePicker Reactjs
+> Nepali Datepicker Reactjs
 
-[![NPM](https://img.shields.io/npm/v/nepali-datepicker-reactjs.svg)](https://www.npmjs.com/package/nepali-datepicker-reactjs) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@sbmdkl/nepali-datepicker-reactjs.svg)](https://www.npmjs.com/package/@sbmdkl/nepali-datepicker-reactjs) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save nepali-datepicker-reactjs
+npm install --save @sbmdkl/nepali-datepicker-reactjs
 ```
 
 ## Usage
@@ -15,8 +15,8 @@ npm install --save nepali-datepicker-reactjs
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'nepali-datepicker-reactjs'
-import 'nepali-datepicker-reactjs/dist/index.css'
+import MyComponent from '@sbmdkl/nepali-datepicker-reactjs'
+import '@sbmdkl/nepali-datepicker-reactjs/dist/index.css'
 
 class Example extends Component {
   render() {
