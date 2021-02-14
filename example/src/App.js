@@ -1,10 +1,24 @@
-import React from 'react'
+import React from 'react';
 
-import { ExampleComponent } from 'nepali-datepicker-reactjs'
-import 'nepali-datepicker-reactjs/dist/index.css'
+import Calendar from 'nepali-datepicker-reactjs';
+import 'nepali-datepicker-reactjs/dist/index.css';
 
-const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+class App extends React.Component {
+	componentDidMount() {}
+	state = {
+		date: ''
+	};
+	onChange = ({ bsDate, adDate }) => {
+		console.log(adDate);
+		this.setState({ date: bsDate });
+	};
+	render() {
+		return (
+			<div style={{ marginLeft: 100 }}>
+				<Calendar onChange={this.onChange} language='ne' dateFormat='DDDD, DD/MM/YYYY' theme='deepdark' />
+			</div>
+		);
+	}
 }
 
-export default App
+export default App;

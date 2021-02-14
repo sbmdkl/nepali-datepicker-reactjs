@@ -1,0 +1,272 @@
+* {
+  box-sizing: border-box;
+}
+
+.react-calendar {
+  max-width: 300px;
+  box-shadow: 5px 3px 12px 0px rgba(16, 36, 94, 0.2);
+  position: absolute;
+  background-color: #fff;
+}
+
+.react-calendar__input {
+    font-size: 16px;
+    line-height: 1.5;
+}
+.react-calendar__days {
+  display: flex;
+  text-align: center;
+  background-color: #fff;
+}
+.react-calendar__days-day {
+  flex-basis: 14.2857%;
+}
+.react-calendar__dates {
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+.react-calendar__dates-date {
+  padding: 10px 7px;
+  flex-basis: 42px;
+  text-align: center;
+}
+
+.react-calendar__dates-null {
+  padding: 10px 21px;
+}
+/* 
+Theme CSS
+1. hover on null and date -> background color and color
+2. today -> background color and color
+3. selected date -> background color and color
+4. hover on today and selected date -> background color and color
+
+
+Theme Red:
+1. hover on null and date -> {
+  background-color: #e6e6e6,
+  color:#000
+}
+2. today -> {
+  background-color: #008FFD,
+  color:#fff
+}
+3. selected date -> {
+  background-color: #FF0000,
+  color:#fff
+}
+4. hover on today and selected date -> {
+  background-color: #FF0000,
+  color:#fff
+}
+
+Theme White:
+1. hover on null and date -> {
+  background-color: #e6e6e6,
+  color:#000
+}
+2. today -> {
+  background-color: #fff,
+  color:#008FFD
+}
+3. selected date -> {
+  background-color: #008FFD,
+  color:#fff
+}
+4. hover on today and selected date -> {
+  background-color: #e6e6e6,
+  color:#000
+}
+
+*/
+/* theme default starts*/
+.theme-react-calendar__dates-date-default:hover,
+.theme-react-calendar__dates-null-default:hover {
+background-color: #e6e6e6;
+ color: #000;
+}
+.theme-react-calendar__dates-date__today-default {
+    color: #008FFD;
+}
+.theme-react-calendar__dates-date__selected-default {
+  background-color: #008FFD;
+    color: #fff;
+}
+
+.theme-react-calendar__dates-date__today-default:hover,
+.theme-react-calendar__dates-date__selected-default:hover {
+  background-color: #008FFD;
+    color:#fff
+}
+/* theme default ends */
+
+/* theme red starts*/
+.theme-react-calendar__dates-date-red:hover,
+.theme-react-calendar__dates-null-red:hover {
+  background-color: #e6e6e6;
+  color: #000;
+}
+
+.theme-react-calendar__dates-date__today-red {
+  color: #eb2f06;
+}
+
+.theme-react-calendar__dates-date__selected-red {
+  background-color: #eb2f06;
+  color: #fff;
+}
+
+.theme-react-calendar__dates-date__today-red:hover,
+.theme-react-calendar__dates-date__selected-red:hover {
+  background-color: #c23616;
+  color: #fff
+}
+/* theme red ends */
+
+
+/* theme blue starts*/
+.theme-react-calendar__dates-date-blue:hover,
+.theme-react-calendar__dates-null-blue:hover {
+  background-color: #e6e6e6;
+  color: #000;
+}
+
+.theme-react-calendar__dates-date__today-blue {
+  color: #3867d6;
+}
+
+.theme-react-calendar__dates-date__selected-blue {
+  background-color: #3867d6;
+  color: #fff;
+}
+
+.theme-react-calendar__dates-date__today-blue:hover,
+.theme-react-calendar__dates-date__selected-blue:hover {
+  background-color: #00487C;
+  color: #fff
+}
+/* theme blue ends */
+
+
+/* theme green starts*/
+.theme-react-calendar__dates-date-green:hover,
+.theme-react-calendar__dates-null-green:hover {
+  background-color: #e6e6e6;
+  color: #000;
+}
+
+.theme-react-calendar__dates-date__today-green {
+  color: #05c46b;
+}
+
+.theme-react-calendar__dates-date__selected-green {
+  background-color: #05c46b;
+  color: #fff;
+}
+
+.theme-react-calendar__dates-date__today-green:hover,
+.theme-react-calendar__dates-date__selected-green:hover {
+  background-color: #0be881;
+  color: #fff
+}
+/* theme green ends */
+
+
+/* theme dark starts*/
+.theme-react-calendar__dates-date-dark:hover,
+.theme-react-calendar__dates-null-dark:hover {
+  background-color: #e6e6e6;
+  color: #000;
+}
+
+.theme-react-calendar__dates-date__today-dark {
+  color: #34495e;
+}
+
+.theme-react-calendar__dates-date__selected-dark {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.theme-react-calendar__dates-date__today-dark:hover,
+.theme-react-calendar__dates-date__selected-dark:hover {
+  background-color: #2c3e50;
+  color: #fff
+}
+/* theme dark ends */
+
+
+
+
+/* theme deepdark starts*/
+
+.theme-react-calendar__dates-date-deepdark,
+.theme-react-calendar__dates-null-deepdark {
+color: #FFF;
+}
+
+.theme-react-calendar__dates-deepdark {
+  background-color: #34495e;
+}
+
+.theme-react-calendar__days-deepdark {
+    background-color: #34495e;
+    color: #FFF;
+}
+.theme-react-calendar__dates-date-deepdark:hover,
+.theme-react-calendar__dates-null-deepdark:hover {
+  background-color: #2c3e50;
+  color: #FFF;
+}
+
+.theme-react-calendar__dates-date__today-deepdark {
+  background-color: #1c3f61;
+  color:#fff
+}
+
+.theme-react-calendar__dates-date__selected-deepdark {
+  background-color: #2c3e50;
+  color: #fff;
+}
+
+.theme-react-calendar__dates-date__today-deepdark:hover,
+.theme-react-calendar__dates-date__selected-deepdark:hover {
+  background-color: #2c3e50;
+  color: #fff
+}
+
+.theme-react-calendar-deepdark {
+  background-color: #2c3e50;
+}
+
+/* theme deepdark ends */
+
+
+
+/* default theme starts*/
+
+.react-calendar__dates-date:hover,.react-calendar__dates-null:hover {
+ 
+ cursor: pointer;
+
+}
+.react-calendar__dates-date__today {
+
+  border-radius: 50%;
+}
+.react-calendar__dates-date__selected {
+
+
+  border-radius: 50%;
+}
+
+.react-calendar__dates-date__today:hover,
+.react-calendar__dates-date__selected:hover {
+
+  cursor: pointer;
+
+}
+
+/* default theme ends */

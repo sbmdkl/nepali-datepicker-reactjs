@@ -1,0 +1,108 @@
+/* 
+
+Theme CSS
+
+1. header -> background
+2. arrow -> border
+
+Theme Red:
+
+1. header -> {
+  background: red
+}
+
+2. arrow -> {
+  border: solid #fff
+}
+
+
+*/
+
+/* theme default starts */
+.theme-header-default {
+  background: #fff;
+}
+.theme-header-arrow-default {
+  border: solid #000;
+}
+/* theme default ends */
+
+
+/* theme red starts */
+.theme-header-red {
+  background: #eb2f06;
+}
+.theme-header-arrow-red {
+  border: solid #fff;
+}
+/* theme red ends */
+
+
+/* theme blue starts */
+.theme-header-blue {
+  background: #3867d6;
+}
+.theme-header-arrow-blue {
+  border: solid #fff;
+}
+/* theme blue ends */
+
+/* theme green starts */
+.theme-header-green {
+  background: #05c46b;
+}
+.theme-header-arrow-green {
+  border: solid #fff;
+}
+/* theme green ends */
+
+/* theme dark starts */
+.theme-header-dark {
+  background: #34495e;
+}
+.theme-header-arrow-dark {
+  border: solid #fff;
+}
+/* theme dark ends */
+
+/* theme deepdark starts */
+.theme-header-deepdark {
+  background: #34495e;
+}
+.theme-header-arrow-deepdark {
+  border: solid #fff;
+}
+/* theme deepdark ends */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+.header__mycontainer {
+  align-self: center;
+}
+.arrow {
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.arrow-left { 
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  margin-left: 8px;
+}
+.arrow-right { 
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  margin-right: 8px;
+}
+.header__mycontainer__select {
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 2px;
+}
