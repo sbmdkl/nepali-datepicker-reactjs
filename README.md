@@ -13,18 +13,33 @@ npm install --save @sbmdkl/nepali-datepicker-reactjs
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react';
 
-import MyComponent from '@sbmdkl/nepali-datepicker-reactjs'
-import '@sbmdkl/nepali-datepicker-reactjs/dist/index.css'
+import Calendar from '@sbmdkl/nepali-datepicker-reactjs';
+import '@sbmdkl/nepali-datepicker-reactjs/dist/index.css';
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
+class App extends React.Component {
+	componentDidMount() {}
+	state = {
+		date: ''
+	};
+	onChange = ({ bsDate, adDate }) => {
+		console.log(adDate);
+		this.setState({ date: bsDate });
+	};
+	render() {
+		return (
+			<div style={{ marginLeft: 100 }}>
+				<Calendar onChange={this.onChange} />
+			</div>
+		);
+	}
 }
+
+export default App;
+
 ```
 
 ## License
 
-MIT © [Shubham Dhakal](https://github.com/Shubham Dhakal)
+MIT © [Shubham Dhakal](https://github.com/sbmdkl)
