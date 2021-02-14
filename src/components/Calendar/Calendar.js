@@ -15,6 +15,9 @@ import bsToAd from '../../utils/BsToAd';
 import styles from './Calendar.module.css';
 import RenderCalendar from './RenderCalendar';
 class Calendar extends Component {
+	static defaultProps = {
+		onChange: () => {}
+	};
 	wrapperRef = React.createRef();
 	inputRef = React.createRef();
 	componentDidMount() {
