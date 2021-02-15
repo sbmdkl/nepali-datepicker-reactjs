@@ -52,6 +52,7 @@ export default App;
 
 |Prop name|Description|Default value|Example values|
 |----|----|----|----|
+|className|Custom class to input field of calendar.|n/a|`'form-control'`|
 |dateFormat|Input Date Format. Supported values are: `YYYY`,`YYY`,`YY`, `M`, `MM`, `D`, `DD`, `DDD`, `DDDD`.|YYYY-MM-DD|`"YYYY/MM/DD"`|
 |language|Language options are: `en` or `ne`. Shows the calendar in different language.| `ne` |`"ne"`|
 |onChange|Function called when the user clicks an item on the most detailed view available. Returns both selected nepali date and english date.|n/a|`(value) => alert('New date is: ', value)`|
