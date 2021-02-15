@@ -16,7 +16,8 @@ import styles from './Calendar.module.css';
 import RenderCalendar from './RenderCalendar';
 class Calendar extends Component {
 	static defaultProps = {
-		onChange: () => {}
+		onChange: () => {},
+		className: ''
 	};
 	wrapperRef = React.createRef();
 	inputRef = React.createRef();
@@ -365,7 +366,7 @@ class Calendar extends Component {
 				<input
 					ref={this.inputRef}
 					readOnly={true}
-					className={styles['react-calendar__input']}
+					className={`${styles['react-calendar__input']} ${this.props.className}`}
 					style={{ ...this.props.style }}
 					placeholder='select date'
 					onClick={() => this.setState({ showCalendar: true })}
