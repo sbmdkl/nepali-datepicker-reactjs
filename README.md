@@ -120,6 +120,7 @@ export default App;
 
 ```
 Output:
+
 ![output](https://raw.githubusercontent.com/sbmdkl/nepali-datepicker-reactjs/main/blob/images/0142e689-6c38-4693-bfa0-a78e22ad6ec5%20.png)
 
 ## License
