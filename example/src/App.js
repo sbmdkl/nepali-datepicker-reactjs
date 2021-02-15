@@ -15,7 +15,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div style={{ marginLeft: 100 }}>
-				<Calendar onChange={this.onChange} theme='deepdark' />
+				<Calendar onChange={this.onChange} language='en' theme='deepdark' dateFormat='DDDD, YYYY-MM-DD' />
 			</div>
 		);
 	}

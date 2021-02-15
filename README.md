@@ -27,17 +27,15 @@ import Calendar from '@sbmdkl/nepali-datepicker-reactjs';
 import '@sbmdkl/nepali-datepicker-reactjs/dist/index.css';
 
 class App extends React.Component {
-	componentDidMount() {}
-	state = {
-		date: ''
-	};
+	state = {date: ''}
+
 	onChange = ({ bsDate, adDate }) => {
-		console.log(adDate);
 		this.setState({ date: bsDate });
 	};
+
 	render() {
 		return (
-			<div style={{ marginLeft: 100 }}>
+			<div>
 				<Calendar onChange={this.onChange} />
 			</div>
 		);
@@ -47,6 +45,82 @@ class App extends React.Component {
 export default App;
 
 ```
+
+## User guide
+
+#### Props
+
+|Prop name|Description|Default value|Example values|
+|----|----|----|----|
+|dateFormat|Input Date Format. Supported values are: `YYYY`,`YYY`,`YY`, `M`, `MM`, `D`, `DD`, `DDD`, `DDDD`.|YYYY-MM-DD|`"YYYY/MM/DD"`|
+|language|Language options are: `en` or `ne`. Shows the calendar in different language.| `ne` |`"ne"`|
+|onChange|Function called when the user clicks an item on the most detailed view available. Returns both selected nepali date and english date.|n/a|`(value) => alert('New date is: ', value)`|
+|style|Custom style to input field of calendar.|n/a|`{{color:'red'}}`|
+|theme|Use multi theme availabe by defaults. Theme supports : `red` `blue` `green` `dark` `deepdark` `default`.|`default`|`"red"`|
+
+
+## dateFormat
+Format the date to provide various output based on format string
+<pre>
+YYYY - 4 digit of year (२०७७)
+YYY  - 3 digit of year (०७७)
+YY   - 2 digit of year (७७)
+M    - month number (१ - १२)
+MM   - month number with 0 padding - (०१-१२)
+D    - Day of Month (१, २, ३ ... ३१, ३२)
+DD   - Day of Month with zero padding (०१, ०२, ...)
+DDD  - Day of week in short form (आइत, सोम, ...)
+DDDD - Day of week full form  (आइतबार, सोमबार, ...)
+</pre>
+
+Date Format output will auto change with the language.
+If language is set to english `en`, then YYYY will shows 2077, 2078 ...,
+similarily output of DDDD will shows Sunday, Monday ...
+
+### dateFormat Usage
+```jsx
+	<Calendar onChange={this.onChange} dateFormat="DDDD, YYYY-MM-DD" />
+```
+output: सोमवार, २०७७-११-०३
+
+### Get Ad date of selected Date
+```jsx
+// both Ad and BS dates are passed to onChange on each date selected
+	onChange = ({ bsDate, adDate }) => {
+		this.setState({ date: bsDate });
+	};
+
+
+```
+### Using with language and theme
+
+```jsx
+import React from 'react';
+
+import Calendar from '@sbmdkl/nepali-datepicker-reactjs';
+import '@sbmdkl/nepali-datepicker-reactjs/dist/index.css';
+
+class App extends React.Component {
+	state = {date: ''}
+
+	onChange = ({ bsDate, adDate }) => {
+		this.setState({ date: bsDate });
+	};
+
+	render() {
+		return (
+			<div>
+				<Calendar onChange={this.onChange} language="en" theme="deepdark" dateFormat="DDDD, YYYY-MM-DD" />
+			</div>
+		);
+	}
+}
+
+export default App;
+
+```
+Output:
+![output](https://raw.githubusercontent.com/sbmdkl/nepali-datepicker-reactjs/main/blob/images/0142e689-6c38-4693-bfa0-a78e22ad6ec5.png)
 
 ## License
 
