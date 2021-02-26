@@ -275,6 +275,17 @@ const getFormattedDay = (language, length, index) => {
 		}
 	}
 };
+const getFormattedMonth = (language, index) => {
+	console.log(index);
+	if (language === 'NE') {
+		index = getEnglishNumber(index);
+		return monthsInNepali[index];
+	} else {
+		index--;
+		// language english
+		return monthsInEnglish[index];
+	}
+};
 
 export {
 	bs,
@@ -288,5 +299,6 @@ export {
 	currentMonth,
 	firstDay,
 	leapYears,
-	getFormattedDay
+	getFormattedDay,
+	getFormattedMonth
 };

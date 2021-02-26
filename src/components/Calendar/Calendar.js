@@ -6,7 +6,8 @@ import {
 	getNepaliNumber,
 	getEnglishNumber,
 	leapYears,
-	getFormattedDay
+	getFormattedDay,
+	getFormattedMonth
 } from '../../utils/Config';
 import Header from '../Header';
 import NameOfDays from '../NameOfDays';
@@ -271,6 +272,7 @@ class Calendar extends Component {
 		// YY 77
 		// M 1 - 12
 		// MM 01-12
+		// MMMM baishak, Jestha ....
 		// D  1-30
 		// DD 01-30
 		// DDD Sun, Mon ....
@@ -285,7 +287,9 @@ class Calendar extends Component {
 			dateFormat = dateFormat.replace('YY', year.toString().slice(2, 4));
 		}
 		// Month Format
-		if (dateFormat.includes('MM')) {
+		if (dateFormat.includes('MMMM')) {
+			dateFormat = dateFormat.replace('MMMM', getFormattedMonth(this.validateLanguage(this.props.language), month));
+		} else if (dateFormat.includes('MM')) {
 			dateFormat = dateFormat.replace('MM', month);
 		} else if (dateFormat.includes('M')) {
 			dateFormat = dateFormat.replace('M', (month[0] === '0') | (month[0] === '०') ? month.substring(1) : month);
