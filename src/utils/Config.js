@@ -279,6 +279,7 @@ const getFormattedMonth = (language, index) => {
 	console.log(index);
 	if (language === 'NE') {
 		index = getEnglishNumber(index);
+		index--;
 		return monthsInNepali[index];
 	} else {
 		index--;

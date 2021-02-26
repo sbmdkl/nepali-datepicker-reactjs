@@ -53,7 +53,7 @@ export default App;
 |Prop name|Description|Default value|Example values|
 |----|----|----|----|
 |className|Custom class to input field of calendar.|n/a|`'form-control'`|
-|dateFormat|Input Date Format. Supported values are: `YYYY`,`YYY`,`YY`, `M`, `MM`, `D`, `DD`, `DDD`, `DDDD`.|YYYY-MM-DD|`"YYYY/MM/DD"`|
+|dateFormat|Input Date Format. Supported values are: `YYYY`,`YYY`,`YY`, `M`, `MM`, `MMMM`, `D`, `DD`, `DDD`, `DDDD`.|YYYY-MM-DD|`"YYYY/MM/DD"`|
 |language|Language options are: `en` or `ne`. Shows the calendar in different language.| `ne` |`"ne"`|
 |onChange|Function called when the user clicks an item on the most detailed view available. Returns both selected nepali date and english date.|n/a|`(value) => alert('New date is: ', value)`|
 |style|Custom style to input field of calendar.|n/a|`{{color:'red'}}`|
@@ -68,6 +68,7 @@ YYY  - 3 digit of year (०७७)
 YY   - 2 digit of year (७७)
 M    - month number (१ - १२)
 MM   - month number with 0 padding - (०१-१२)
+MMMM - Full month name (बैशाख, जेठ, ...)
 D    - Day of Month (१, २, ३ ... ३१, ३२)
 DD   - Day of Month with zero padding (०१, ०२, ...)
 DDD  - Day of week in short form (आइत, सोम, ...)
@@ -83,6 +84,14 @@ similarily output of DDDD will shows Sunday, Monday ...
 	<Calendar onChange={this.onChange} dateFormat="DDDD, YYYY-MM-DD" />
 ```
 output: सोमवार, २०७७-११-०३
+```jsx
+	<Calendar onChange={this.onChange} dateFormat="DDDD, MMMM DD, YYYY" />
+```
+output: शुक्रवार, फाल्गुन १४, २०७७
+```jsx
+	<Calendar onChange={this.onChange} language="en" dateFormat="DDDD, MMMM DD, YYYY" />
+```
+output: Friday, Falgun 14, 2077
 
 ### Get Ad date of selected Date
 ```jsx
