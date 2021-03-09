@@ -3,6 +3,7 @@
 
 [![NPM](https://img.shields.io/npm/v/@sbmdkl/nepali-datepicker-reactjs.svg)](https://www.npmjs.com/package/@sbmdkl/nepali-datepicker-reactjs) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+A simple and reusable Datepicker component for React <a href="https://sbmdkl.github.io/nepali-datepicker-reactjs/#/">Read Full Documentation</a>.
 ## Installation
 
 ```bash
