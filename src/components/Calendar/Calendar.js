@@ -7,7 +7,7 @@ import {
 	getEnglishNumber,
 	leapYears,
 	getFormattedDay,
-	getFormattedMonth
+	getFormattedMonth,
 } from '../../utils/Config';
 import Header from '../Header';
 import NameOfDays from '../NameOfDays';
@@ -18,8 +18,9 @@ import RenderCalendar from './RenderCalendar';
 class Calendar extends Component {
 	static defaultProps = {
 		onChange: () => {},
-		className: ''
+		className: '',
 	};
+
 	wrapperRef = React.createRef();
 	inputRef = React.createRef();
 	componentDidMount() {
@@ -37,7 +38,7 @@ class Calendar extends Component {
 				currentDay,
 				today,
 				language,
-				theme
+				theme,
 			},
 			() => {
 				this.props.onChange(
@@ -57,7 +58,11 @@ class Calendar extends Component {
 	}
 
 	handleClickOutside = (event) => {
-		if (this.state.showCalendar && this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+		if (
+			this.state.showCalendar &&
+			this.wrapperRef &&
+			!this.wrapperRef.current.contains(event.target)
+		) {
 			this.setState({ showCalendar: false });
 		}
 	};
@@ -71,11 +76,11 @@ class Calendar extends Component {
 		selectedDate: '',
 		today: '',
 		language: 'NE',
-		theme: 'default'
+		theme: 'default',
 	};
 
 	validateTheme = (th) => {
-		let theme = th ? th : 'default';
+		let theme = th || 'default';
 		theme = theme.toString().toLowerCase();
 		switch (theme) {
 			case 'red':
@@ -102,7 +107,7 @@ class Calendar extends Component {
 	};
 
 	validateLanguage = (ln) => {
-		let language = ln ? ln : 'NE';
+		let language = ln || 'NE';
 		language = language.toString().toUpperCase();
 		let lang = 'NE';
 		switch (language) {
@@ -119,9 +124,9 @@ class Calendar extends Component {
 	};
 
 	calcFirstDay = () => {
-		let month = this.state.currentMonth;
-		let year = this.state.currentYear;
-		let diff = year - 2000;
+		const month = this.state.currentMonth;
+		const year = this.state.currentYear;
+		const diff = year - 2000;
 		let leapYear = 0;
 		let firstDay;
 		for (let l = 0; l < leapYears.length; l++) {
@@ -144,15 +149,16 @@ class Calendar extends Component {
 		td = 0;
 		return firstDay;
 	};
+
 	bsCalendar = () => {
-		let month = this.state.currentMonth;
-		let year = this.state.currentYear;
+		const month = this.state.currentMonth;
+		const year = this.state.currentYear;
 		const firstDay = this.calcFirstDay();
-		let tbl = [];
-		let daysInMonth = bs[year][month];
+		const tbl = [];
+		const daysInMonth = bs[year][month];
 		let date = 1;
 		for (var i = 0; i < 6; i++) {
-			let row = [];
+			const row = [];
 			for (var j = 0; j < 7; j++) {
 				if (i === 0 && j < firstDay) {
 					row.push('');
@@ -178,8 +184,9 @@ class Calendar extends Component {
 		if (this.state.currentYear === 2099 && this.state.currentMonth === 12) {
 			return -1;
 		}
-		let currentYear = this.state.currentMonth === 12 ? this.state.currentYear + 1 : this.state.currentYear;
-		let currentMonth = (this.state.currentMonth + 1) % 13 ? this.state.currentMonth + 1 : 1;
+		const currentYear =
+			this.state.currentMonth === 12 ? this.state.currentYear + 1 : this.state.currentYear;
+		const currentMonth = (this.state.currentMonth + 1) % 13 ? this.state.currentMonth + 1 : 1;
 		this.setState({ currentYear, currentMonth });
 	};
 
@@ -187,69 +194,78 @@ class Calendar extends Component {
 		if (this.state.currentYear === 2000 && this.state.currentMonth === 1) {
 			return -1;
 		}
-		let currentYear = this.state.currentMonth === 1 ? this.state.currentYear - 1 : this.state.currentYear;
-		let currentMonth = this.state.currentMonth === 1 ? 12 : this.state.currentMonth - 1;
+		const currentYear =
+			this.state.currentMonth === 1 ? this.state.currentYear - 1 : this.state.currentYear;
+		const currentMonth = this.state.currentMonth === 1 ? 12 : this.state.currentMonth - 1;
 		this.setState({ currentYear, currentMonth });
 	};
 
 	bsMonthJump = (e) => {
-		let currentMonth = parseInt(e.target.value);
+		const currentMonth = parseInt(e.target.value);
 		this.setState({ currentMonth });
 	};
+
 	bsYearJump = (e) => {
-		let currentYear = parseInt(e.target.value);
+		const currentYear = parseInt(e.target.value);
 		this.setState({ currentYear });
 	};
+
 	onDateClick = (day) => {
 		if (!day) return -1;
 		const englishNumber = this.state.language === 'NE' ? getEnglishNumber(day) : day;
 		this.setState({
 			currentDay: day,
 			selectedDate: `${this.state.currentYear}-${this.state.currentMonth}-${englishNumber}`,
-			showCalendar: false
+			showCalendar: false,
 		});
 
 		this.props.onChange(
 			this.formatDate(
 				this.state.language === 'NE'
-					? this.convertFullDateToNepali(this.state.currentYear + '-' + this.state.currentMonth + '-' + englishNumber)
-					: this.getFullEnglishDate(this.state.currentYear + '-' + this.state.currentMonth + '-' + englishNumber)
+					? this.convertFullDateToNepali(
+							this.state.currentYear + '-' + this.state.currentMonth + '-' + englishNumber
+					  )
+					: this.getFullEnglishDate(
+							this.state.currentYear + '-' + this.state.currentMonth + '-' + englishNumber
+					  )
 			)
 		);
 	};
+
 	getFullEnglishDate = (englishDate) => {
 		const splittedDate = englishDate.split('-');
-		if (splittedDate.length != 3) {
+		if (splittedDate.length !== 3) {
 			console.log('error spliting the date');
 		}
 
 		const year = splittedDate[0];
 		const month = splittedDate[1];
 		const day = splittedDate[2];
-		const selectedDate = `${year}-${splittedDate[1] > 9 ? month : '0' + month}-${splittedDate[2] > 9
-			? day
-			: '0' + day}`;
+		const selectedDate = `${year}-${splittedDate[1] > 9 ? month : '0' + month}-${
+			splittedDate[2] > 9 ? day : '0' + day
+		}`;
 		return selectedDate;
 	};
+
 	convertFullDateToNepali = (englishDate) => {
 		const splittedDate = englishDate.split('-');
-		if (splittedDate.length != 3) {
+		if (splittedDate.length !== 3) {
 			console.log('error spliting the date');
 			return -1;
 		}
 		const year = getNepaliNumber(splittedDate[0]);
 		const month = getNepaliNumber(splittedDate[1]);
 		const day = getNepaliNumber(splittedDate[2]);
-		const selectedNepaliDate = `${year}-${splittedDate[1] > 9 ? month : '०' + month}-${splittedDate[2] > 9
-			? day
-			: '०' + day}`;
+		const selectedNepaliDate = `${year}-${splittedDate[1] > 9 ? month : '०' + month}-${
+			splittedDate[2] > 9 ? day : '०' + day
+		}`;
 		return selectedNepaliDate;
 	};
 
 	formatDate = (fullDate) => {
 		const splittedDate = fullDate.split('-');
 
-		if (splittedDate.length != 3) {
+		if (splittedDate.length !== 3) {
 			console.log('error spliting the date');
 			return -1;
 		}
@@ -264,7 +280,8 @@ class Calendar extends Component {
 				: year + '-' + month + '-' + day
 		);
 		const firstDay = this.calcFirstDay();
-		const weekendDay = (firstDay + (this.state.language === 'NE' ? getEnglishNumber(day) : parseInt(day)) - 1) % 7;
+		const weekendDay =
+			(firstDay + (this.state.language === 'NE' ? getEnglishNumber(day) : parseInt(day)) - 1) % 7;
 		let dateFormat = this.props.dateFormat ? this.props.dateFormat : 'YYYY-MM-DD';
 		dateFormat = dateFormat.toUpperCase();
 		// YYYY 2077
@@ -288,11 +305,17 @@ class Calendar extends Component {
 		}
 		// Month Format
 		if (dateFormat.includes('MMMM')) {
-			dateFormat = dateFormat.replace('MMMM', getFormattedMonth(this.validateLanguage(this.props.language), month));
+			dateFormat = dateFormat.replace(
+				'MMMM',
+				getFormattedMonth(this.validateLanguage(this.props.language), month)
+			);
 		} else if (dateFormat.includes('MM')) {
 			dateFormat = dateFormat.replace('MM', month);
 		} else if (dateFormat.includes('M')) {
-			dateFormat = dateFormat.replace('M', (month[0] === '0') | (month[0] === '०') ? month.substring(1) : month);
+			dateFormat = dateFormat.replace(
+				'M',
+				(month[0] === '0') | (month[0] === '०') ? month.substring(1) : month
+			);
 		}
 		// weekdays format
 		if (dateFormat.includes('DDDD')) {
@@ -310,7 +333,10 @@ class Calendar extends Component {
 		if (dateFormat.includes('DD')) {
 			dateFormat = dateFormat.replace('DD', day);
 		} else if (dateFormat.includes('D')) {
-			dateFormat = dateFormat.replace('D', (day[0] === '0') | (day[0] === '०') ? day.substring(1) : day);
+			dateFormat = dateFormat.replace(
+				'D',
+				(day[0] === '0') | (day[0] === '०') ? day.substring(1) : day
+			);
 		}
 		this.setState({ formatedDate: dateFormat });
 		return { bsDate: dateFormat, adDate: AdDate };
@@ -322,7 +348,9 @@ class Calendar extends Component {
 				<div
 					ref={this.wrapperRef}
 					style={{ top: this.inputRef.current ? this.inputRef.current.clientHeight + 5 : 31 }}
-					className={`${styles['react-calendar']} ${styles['theme-react-calendar-' + this.state.theme]}`}
+					className={`${styles['react-calendar']} ${
+						styles['theme-react-calendar-' + this.state.theme]
+					}`}
 				>
 					{this.state.showCalendar && (
 						<div className=''>
@@ -338,16 +366,16 @@ class Calendar extends Component {
 							/>
 							<div className={styles['react-calendar__body']}>
 								<div
-									className={`${styles['react-calendar__days']} ${styles[
-										'theme-react-calendar__days-' + this.state.theme
-									]}`}
+									className={`${styles['react-calendar__days']} ${
+										styles['theme-react-calendar__days-' + this.state.theme]
+									}`}
 								>
 									<NameOfDays language={this.state.language} />
 								</div>
 								<div
-									className={`${styles['react-calendar__dates']} ${styles[
-										'theme-react-calendar__dates-' + this.state.theme
-									]}`}
+									className={`${styles['react-calendar__dates']} ${
+										styles['theme-react-calendar__dates-' + this.state.theme]
+									}`}
 								>
 									{' '}
 									<RenderCalendar
@@ -369,7 +397,7 @@ class Calendar extends Component {
 				</div>
 				<input
 					ref={this.inputRef}
-					readOnly={true}
+					readOnly
 					className={`${styles['react-calendar__input']} ${this.props.className}`}
 					style={{ ...this.props.style }}
 					placeholder='select date'

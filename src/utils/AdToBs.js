@@ -4,7 +4,7 @@ import { bs } from './Config';
 
 function adToBs() {
 	const startDate = new Date('1943-04-14');
-	let today = new Date();
+	const today = new Date();
 	const daysDifference = Math.floor((today.getTime() - startDate.getTime()) / 86400000);
 	return evaluateNepaliDate(daysDifference);
 }
