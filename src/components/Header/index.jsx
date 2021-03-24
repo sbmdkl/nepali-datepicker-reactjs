@@ -19,7 +19,7 @@ const Header = (props) => {
 					styles['theme-header-arrow-' + props.theme]
 				} `}
 			/>
-			<form className={styles.header__mycontainer}>
+			<div className={styles.header__mycontainer}>
 				<select
 					className={styles.header__mycontainer__select}
 					value={props.currentMonth}
@@ -44,7 +44,7 @@ const Header = (props) => {
 				>
 					{renderYear()}
 				</select>
-			</form>
+			</div>
 			<p
 				onClick={props.bsNext}
 				className={`${styles.arrow} ${styles['arrow-right']} ${
