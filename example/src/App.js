@@ -6,7 +6,7 @@ import '@sbmdkl/nepali-datepicker-reactjs/dist/index.css';
 class App extends React.Component {
 	componentDidMount() {}
 	state = {
-		date: ''
+		date: '',
 	};
 	onChange = ({ bsDate, adDate }) => {
 		console.log(adDate);
@@ -15,7 +15,12 @@ class App extends React.Component {
 	render() {
 		return (
 			<div style={{ marginLeft: 100 }}>
-				<Calendar onChange={this.onChange} language='ne' theme='deepdark' dateFormat='DDDD, MMMM DD, YYYY' />
+				<Calendar
+					onChange={this.onChange}
+					language='ne'
+					theme='deepdark'
+					dateFormat='DDDD, MMMM DD, YYYY'
+				/>
 			</div>
 		);
 	}

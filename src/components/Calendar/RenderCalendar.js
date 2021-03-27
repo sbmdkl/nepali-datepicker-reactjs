@@ -27,9 +27,10 @@ export default class RenderCalendar extends PureComponent {
 	};
 
 	applyDisabledDateCss = (td) => {
-		return this.props.selectedDate === this.getDate(td)
-			? `${styles['react-calendar__dates-date__selected']} ${
-					styles['theme-react-calendar__dates-date__selected-' + this.props.theme]
+		console.log(this.props.theme);
+		return getEnglishNumber(td) === 1
+			? `${styles['react-calendar__dates-date__disabled']} ${
+					styles['theme-react-calendar__dates-date__disabled-' + this.props.theme]
 			  }`
 			: '';
 	};
