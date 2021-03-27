@@ -18,8 +18,10 @@ class App extends React.Component {
 				<Calendar
 					onChange={this.onChange}
 					language='ne'
-					theme='deepdark'
+					theme='default'
 					dateFormat='DDDD, MMMM DD, YYYY'
+					minDate='2077-12-10'
+					maxDate='2077-12-30'
 				/>
 			</div>
 		);

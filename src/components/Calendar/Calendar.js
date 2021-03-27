@@ -25,7 +25,8 @@ class Calendar extends Component {
 		theme: 'default',
 		dateFormat: 'YYYY-MM-DD',
 		style: {},
-		minDate: '2020-01-01',
+		minDate: '',
+		maxDate: '',
 	};
 
 	wrapperRef = React.createRef();
@@ -219,6 +220,7 @@ class Calendar extends Component {
 
 	onDateClick = (day) => {
 		if (!day) return -1;
+		if (this.isDateToDisable(day)) return -1;
 		const englishNumber = this.state.language === 'NE' ? getEnglishNumber(day) : day;
 		this.setState({
 			currentDay: day,
@@ -319,6 +321,47 @@ class Calendar extends Component {
 		return { bsDate: dateFormat, adDate: AdDate };
 	};
 
+	isDateToDisable = (td) => {
+		td = this.state.language === 'NE' ? getEnglishNumber(td) : td;
+		const minDate = this.validateMinMaxDate(this.props.minDate) ? this.props.minDate : '--';
+		const maxDate = this.validateMinMaxDate(this.props.maxDate) ? this.props.maxDate : '--';
+		const splittedMinDate = minDate.split('-');
+		const splittedMaxDate = maxDate.split('-');
+		const minYear = parseInt(splittedMinDate[0]);
+		const minMonth = parseInt(splittedMinDate[1]);
+		const minDay = splittedMinDate[2];
+		const maxYear = parseInt(splittedMaxDate[0]);
+		const maxMonth = parseInt(splittedMaxDate[1]);
+		const maxDay = parseInt(splittedMaxDate[2]);
+		if (this.state.currentYear < minYear || this.state.currentYear > maxYear) {
+			return true;
+		} else if (
+			(this.state.currentYear === minYear && this.state.currentMonth < minMonth) ||
+			(this.state.currentYear === maxYear && this.state.currentMonth > maxMonth)
+		) {
+			return true;
+		} else if (
+			(this.state.currentYear === minYear &&
+				this.state.currentMonth === minMonth &&
+				td <= minDay) ||
+			(this.state.currentYear === maxYear && this.state.currentMonth === maxMonth && td >= maxDay)
+		) {
+			return true;
+		}
+	};
+
+	validateMinMaxDate = (date) => {
+		if (!date) {
+			return false;
+		}
+		if (date.split('-').length !== 3) {
+			return false;
+		}
+
+		// everything ok
+		return true;
+	};
+
 	render() {
 		return (
 			<div style={{ position: 'relative' }}>
@@ -365,6 +408,8 @@ class Calendar extends Component {
 										selectedDate={this.state.selectedDate}
 										theme={this.state.theme}
 										minDate={this.props.minDate}
+										maxDate={this.props.maxDate}
+										isDateToDisable={this.isDateToDisable}
 									/>{' '}
 								</div>
 							</div>

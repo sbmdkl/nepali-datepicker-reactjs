@@ -27,8 +27,7 @@ export default class RenderCalendar extends PureComponent {
 	};
 
 	applyDisabledDateCss = (td) => {
-		console.log(this.props.theme);
-		return getEnglishNumber(td) === 1
+		return this.props.isDateToDisable(td)
 			? `${styles['react-calendar__dates-date__disabled']} ${
 					styles['theme-react-calendar__dates-date__disabled-' + this.props.theme]
 			  }`
