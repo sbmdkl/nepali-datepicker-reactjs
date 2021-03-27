@@ -27,18 +27,30 @@ class Calendar extends Component {
 		style: {},
 		minDate: '',
 		maxDate: '',
+		defaultDate: '',
 	};
 
 	wrapperRef = React.createRef();
 	inputRef = React.createRef();
 	componentDidMount() {
-		const { currentYear, currentMonth, currentDay } = adToBs();
+		let { currentYear, currentMonth, currentDay } = adToBs();
 		const language = this.validateLanguage(this.props.language);
 		const theme = this.validateTheme(this.props.theme);
 		const today =
 			language === 'NE'
 				? convertFullDateToNepali(currentYear + '-' + currentMonth + '-' + currentDay)
 				: getFullEnglishDate(currentYear + '-' + currentMonth + '-' + currentDay);
+		if (this.validateDate(this.props.defaultDate)) {
+			const splittedDate = this.props.defaultDate.split('-');
+			const year = parseInt(splittedDate[0]);
+			const month = parseInt(splittedDate[1]);
+			const day = parseInt(splittedDate[2]);
+
+			if (year < 2000 && year > 2099 && month < 1 && month > 12) return -1;
+			currentYear = year;
+			currentMonth = month;
+			currentDay = day;
+		}
 		this.setState(
 			{
 				currentYear,
@@ -223,7 +235,7 @@ class Calendar extends Component {
 		if (this.isDateToDisable(day)) return -1;
 		const englishNumber = this.state.language === 'NE' ? getEnglishNumber(day) : day;
 		this.setState({
-			currentDay: day,
+			currentDay: englishNumber,
 			selectedDate: `${this.state.currentYear}-${this.state.currentMonth}-${englishNumber}`,
 			showCalendar: false,
 		});
@@ -323,8 +335,8 @@ class Calendar extends Component {
 
 	isDateToDisable = (td) => {
 		td = this.state.language === 'NE' ? getEnglishNumber(td) : td;
-		const minDate = this.validateMinMaxDate(this.props.minDate) ? this.props.minDate : '--';
-		const maxDate = this.validateMinMaxDate(this.props.maxDate) ? this.props.maxDate : '--';
+		const minDate = this.validateDate(this.props.minDate) ? this.props.minDate : '--';
+		const maxDate = this.validateDate(this.props.maxDate) ? this.props.maxDate : '--';
 		const splittedMinDate = minDate.split('-');
 		const splittedMaxDate = maxDate.split('-');
 		const minYear = parseInt(splittedMinDate[0]);
@@ -350,7 +362,7 @@ class Calendar extends Component {
 		}
 	};
 
-	validateMinMaxDate = (date) => {
+	validateDate = (date) => {
 		if (!date) {
 			return false;
 		}

@@ -22,6 +22,7 @@ class App extends React.Component {
 					dateFormat='DDDD, MMMM DD, YYYY'
 					minDate='2077-12-10'
 					maxDate='2077-12-30'
+					defaultDate='2077-12-12'
 				/>
 			</div>
 		);
