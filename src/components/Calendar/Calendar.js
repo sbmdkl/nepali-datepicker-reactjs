@@ -8,6 +8,8 @@ import {
 	leapYears,
 	getFormattedDay,
 	getFormattedMonth,
+	convertFullDateToNepali,
+	getFullEnglishDate,
 } from '../../utils/Config';
 import Header from '../Header';
 import NameOfDays from '../NameOfDays';
@@ -19,6 +21,11 @@ class Calendar extends Component {
 	static defaultProps = {
 		onChange: () => {},
 		className: '',
+		language: 'NE',
+		theme: 'default',
+		dateFormat: 'YYYY-MM-DD',
+		style: {},
+		minDate: '2020-01-01',
 	};
 
 	wrapperRef = React.createRef();
@@ -29,8 +36,8 @@ class Calendar extends Component {
 		const theme = this.validateTheme(this.props.theme);
 		const today =
 			language === 'NE'
-				? this.convertFullDateToNepali(currentYear + '-' + currentMonth + '-' + currentDay)
-				: this.getFullEnglishDate(currentYear + '-' + currentMonth + '-' + currentDay);
+				? convertFullDateToNepali(currentYear + '-' + currentMonth + '-' + currentDay)
+				: getFullEnglishDate(currentYear + '-' + currentMonth + '-' + currentDay);
 		this.setState(
 			{
 				currentYear,
@@ -44,8 +51,8 @@ class Calendar extends Component {
 				this.props.onChange(
 					this.formatDate(
 						language === 'NE'
-							? this.convertFullDateToNepali(currentYear + '-' + currentMonth + '-' + currentDay)
-							: this.getFullEnglishDate(currentYear + '-' + currentMonth + '-' + currentDay)
+							? convertFullDateToNepali(currentYear + '-' + currentMonth + '-' + currentDay)
+							: getFullEnglishDate(currentYear + '-' + currentMonth + '-' + currentDay)
 					)
 				);
 			}
@@ -222,44 +229,14 @@ class Calendar extends Component {
 		this.props.onChange(
 			this.formatDate(
 				this.state.language === 'NE'
-					? this.convertFullDateToNepali(
+					? convertFullDateToNepali(
 							this.state.currentYear + '-' + this.state.currentMonth + '-' + englishNumber
 					  )
-					: this.getFullEnglishDate(
+					: getFullEnglishDate(
 							this.state.currentYear + '-' + this.state.currentMonth + '-' + englishNumber
 					  )
 			)
 		);
-	};
-
-	getFullEnglishDate = (englishDate) => {
-		const splittedDate = englishDate.split('-');
-		if (splittedDate.length !== 3) {
-			console.log('error spliting the date');
-		}
-
-		const year = splittedDate[0];
-		const month = splittedDate[1];
-		const day = splittedDate[2];
-		const selectedDate = `${year}-${splittedDate[1] > 9 ? month : '0' + month}-${
-			splittedDate[2] > 9 ? day : '0' + day
-		}`;
-		return selectedDate;
-	};
-
-	convertFullDateToNepali = (englishDate) => {
-		const splittedDate = englishDate.split('-');
-		if (splittedDate.length !== 3) {
-			console.log('error spliting the date');
-			return -1;
-		}
-		const year = getNepaliNumber(splittedDate[0]);
-		const month = getNepaliNumber(splittedDate[1]);
-		const day = getNepaliNumber(splittedDate[2]);
-		const selectedNepaliDate = `${year}-${splittedDate[1] > 9 ? month : '०' + month}-${
-			splittedDate[2] > 9 ? day : '०' + day
-		}`;
-		return selectedNepaliDate;
 	};
 
 	formatDate = (fullDate) => {
@@ -381,14 +358,13 @@ class Calendar extends Component {
 									<RenderCalendar
 										bsCalendar={this.bsCalendar}
 										onDateClick={this.onDateClick}
-										convertFullDateToNepali={this.convertFullDateToNepali}
-										getFullEnglishDate={this.getFullEnglishDate}
 										today={this.state.today}
 										language={this.state.language}
 										currentYear={this.state.currentYear}
 										currentMonth={this.state.currentMonth}
 										selectedDate={this.state.selectedDate}
 										theme={this.state.theme}
+										minDate={this.props.minDate}
 									/>{' '}
 								</div>
 							</div>

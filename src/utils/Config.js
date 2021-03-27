@@ -306,6 +306,36 @@ const getFormattedMonth = (language, index) => {
 	}
 };
 
+const getFullEnglishDate = (englishDate) => {
+	const splittedDate = englishDate.split('-');
+	if (splittedDate.length !== 3) {
+		console.error('error spliting the date');
+	}
+
+	const year = splittedDate[0];
+	const month = splittedDate[1];
+	const day = splittedDate[2];
+	const selectedDate = `${year}-${splittedDate[1] > 9 ? month : '0' + month}-${
+		splittedDate[2] > 9 ? day : '0' + day
+	}`;
+	return selectedDate;
+};
+
+const convertFullDateToNepali = (englishDate) => {
+	const splittedDate = englishDate.split('-');
+	if (splittedDate.length !== 3) {
+		console.error('error spliting the date');
+		return -1;
+	}
+	const year = getNepaliNumber(splittedDate[0]);
+	const month = getNepaliNumber(splittedDate[1]);
+	const day = getNepaliNumber(splittedDate[2]);
+	const selectedNepaliDate = `${year}-${splittedDate[1] > 9 ? month : '०' + month}-${
+		splittedDate[2] > 9 ? day : '०' + day
+	}`;
+	return selectedNepaliDate;
+};
+
 export {
 	bs,
 	daysInNepali,
@@ -320,4 +350,6 @@ export {
 	leapYears,
 	getFormattedDay,
 	getFormattedMonth,
+	getFullEnglishDate,
+	convertFullDateToNepali,
 };
