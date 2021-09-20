@@ -84,6 +84,8 @@ export default App;
 | onChange    | Function called when the user clicks an item on the most detailed view available. Returns both selected nepali date and english date. | n/a           | `(value) => alert('New date is: ', value)` |
 | style       | Custom style to input field of calendar.                                                                                              | n/a           | `{{color:'red'}}`                          |
 | theme       | Use multi theme availabe by defaults. Theme supports : `red` `blue` `green` `dark` `deepdark` `default`.                              | `default`     | `"red"`                                    |
+| hideDefaultValue       | hide initial date value in the input                           | `false`     | `true`                                    |
+| placeholder       | Your custom placeholder | `n/a`     | `"Select Date"`                                    |
 
 ## dateFormat
 

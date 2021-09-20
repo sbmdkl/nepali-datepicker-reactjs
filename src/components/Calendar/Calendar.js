@@ -97,6 +97,7 @@ class Calendar extends Component {
 		today: '',
 		language: 'NE',
 		theme: 'default',
+		hideDefaultValue: this.props.hideDefaultValue || false,
 	};
 
 	validateTheme = (th) => {
@@ -238,6 +239,7 @@ class Calendar extends Component {
 			currentDay: englishNumber,
 			selectedDate: `${this.state.currentYear}-${this.state.currentMonth}-${englishNumber}`,
 			showCalendar: false,
+			hideDefaultValue: false,
 		});
 
 		this.props.onChange(
@@ -433,10 +435,10 @@ class Calendar extends Component {
 					readOnly
 					className={`${styles['react-calendar__input']} ${this.props.className}`}
 					style={{ ...this.props.style }}
-					placeholder='select date'
+					placeholder={this.props.placeholder ?? 'select date'}
 					onClick={() => this.setState({ showCalendar: true })}
 					type='text'
-					defaultValue={this.state.formatedDate}
+					defaultValue={this.state.hideDefaultValue ? '' : this.state.formatedDate}
 				/>
 			</div>
 		);
