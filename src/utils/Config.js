@@ -294,7 +294,6 @@ const getFormattedDay = (language, length, index) => {
 	}
 };
 const getFormattedMonth = (language, index) => {
-	console.log(index);
 	if (language === 'NE') {
 		index = getEnglishNumber(index);
 		index--;

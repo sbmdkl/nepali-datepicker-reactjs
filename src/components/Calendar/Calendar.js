@@ -28,10 +28,25 @@ class Calendar extends Component {
 		minDate: '',
 		maxDate: '',
 		defaultDate: '',
+		hideDefaultValue: false,
+	};
+
+	state = {
+		currentMonth,
+		currentYear,
+		currentDay: 1,
+		dates: [],
+		showCalendar: false,
+		selectedDate: '',
+		today: '',
+		language: 'NE',
+		theme: 'default',
+		hideDefaultValue: this.props.hideDefaultValue,
 	};
 
 	wrapperRef = React.createRef();
 	inputRef = React.createRef();
+
 	componentDidMount() {
 		let { currentYear, currentMonth, currentDay } = adToBs();
 		const language = this.validateLanguage(this.props.language);
@@ -61,13 +76,20 @@ class Calendar extends Component {
 				theme,
 			},
 			() => {
-				this.props.onChange(
+				if (this.state.hideDefaultValue)
 					this.formatDate(
 						language === 'NE'
 							? convertFullDateToNepali(currentYear + '-' + currentMonth + '-' + currentDay)
 							: getFullEnglishDate(currentYear + '-' + currentMonth + '-' + currentDay)
-					)
-				);
+					);
+				else
+					this.props.onChange(
+						this.formatDate(
+							language === 'NE'
+								? convertFullDateToNepali(currentYear + '-' + currentMonth + '-' + currentDay)
+								: getFullEnglishDate(currentYear + '-' + currentMonth + '-' + currentDay)
+						)
+					);
 			}
 		);
 		document.addEventListener('mousedown', this.handleClickOutside);
@@ -85,19 +107,6 @@ class Calendar extends Component {
 		) {
 			this.setState({ showCalendar: false });
 		}
-	};
-
-	state = {
-		currentMonth,
-		currentYear,
-		currentDay: 1,
-		dates: [],
-		showCalendar: false,
-		selectedDate: '',
-		today: '',
-		language: 'NE',
-		theme: 'default',
-		hideDefaultValue: this.props.hideDefaultValue || false,
 	};
 
 	validateTheme = (th) => {
