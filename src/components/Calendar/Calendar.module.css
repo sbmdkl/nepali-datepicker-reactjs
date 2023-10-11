@@ -3,6 +3,7 @@
 }
 
 .react-calendar {
+	width: "250%";
 	max-width: 300px;
 	box-shadow: 5px 3px 12px 0px rgba(16, 36, 94, 0.2);
 	position: absolute;
