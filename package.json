@@ -4,7 +4,10 @@
 	"description": "Nepali Datepicker Reactjs",
 	"author": "Shubham Dhakal",
 	"license": "MIT",
-	"repository": "sbmdkl/nepali-datepicker-reactjs",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sbmdkl/nepali-datepicker-reactjs.git"
+	},
 	"main": "dist/index.js",
 	"module": "dist/index.modern.js",
 	"source": "src/index.js",
