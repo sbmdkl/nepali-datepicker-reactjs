@@ -17,7 +17,22 @@ import adToBs from '../../utils/AdToBs';
 import bsToAd from '../../utils/BsToAd';
 import styles from './Calendar.module.css';
 import RenderCalendar from './RenderCalendar';
-class Calendar extends Component {
+
+interface Props {
+	language: string;
+	theme: string;
+	hideDefaultValue: boolean;
+	defaultDate: string;
+	onChange: any;
+	style: React.CSSProperties;
+	minDate: string;
+	maxDate: string;
+	className: string;
+	dateFormat: string;
+	placeholder?: string;
+}
+
+class Calendar extends Component<Props> {
 	static defaultProps = {
 		onChange: () => {},
 		className: '',
@@ -42,10 +57,11 @@ class Calendar extends Component {
 		language: 'NE',
 		theme: 'default',
 		hideDefaultValue: this.props.hideDefaultValue,
+		formattedDate: '',
 	};
 
-	wrapperRef = React.createRef();
-	inputRef = React.createRef();
+	wrapperRef = React.createRef<HTMLDivElement>();
+	inputRef = React.createRef<HTMLInputElement>();
 
 	componentDidMount() {
 		let { currentYear, currentMonth, currentDay } = adToBs();
@@ -56,10 +72,7 @@ class Calendar extends Component {
 				? convertFullDateToNepali(currentYear + '-' + currentMonth + '-' + currentDay)
 				: getFullEnglishDate(currentYear + '-' + currentMonth + '-' + currentDay);
 		if (this.validateDate(this.props.defaultDate)) {
-			const splittedDate = this.props.defaultDate.split('-');
-			const year = parseInt(splittedDate[0]);
-			const month = parseInt(splittedDate[1]);
-			const day = parseInt(splittedDate[2]);
+			const [year, month, day] = this.props.defaultDate.split('-').map(parseInt);
 
 			if (year < 2000 && year > 2099 && month < 1 && month > 12) return -1;
 			currentYear = year;
@@ -99,17 +112,19 @@ class Calendar extends Component {
 		document.removeEventListener('mousedown', this.handleClickOutside);
 	}
 
-	handleClickOutside = (event) => {
+	handleClickOutside = (event: MouseEvent) => {
 		if (
 			this.state.showCalendar &&
 			this.wrapperRef &&
-			!this.wrapperRef.current.contains(event.target)
+			'current' in this.wrapperRef &&
+			this.wrapperRef.current &&
+			!this.wrapperRef.current.contains(event.target as Node)
 		) {
 			this.setState({ showCalendar: false });
 		}
 	};
 
-	validateTheme = (th) => {
+	validateTheme = (th: string) => {
 		let theme = th || 'default';
 		theme = theme.toString().toLowerCase();
 		switch (theme) {
@@ -128,7 +143,6 @@ class Calendar extends Component {
 			case 'deepdark':
 				theme = 'deepdark';
 				break;
-
 			default:
 				theme = 'default';
 				break;
@@ -136,7 +150,7 @@ class Calendar extends Component {
 		return theme;
 	};
 
-	validateLanguage = (ln) => {
+	validateLanguage = (ln: string) => {
 		let language = ln || 'NE';
 		language = language.toString().toUpperCase();
 		let lang = 'NE';
@@ -230,19 +244,19 @@ class Calendar extends Component {
 		this.setState({ currentYear, currentMonth });
 	};
 
-	bsMonthJump = (e) => {
+	bsMonthJump = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const currentMonth = parseInt(e.target.value);
 		this.setState({ currentMonth });
 	};
 
-	bsYearJump = (e) => {
+	bsYearJump = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		const currentYear = parseInt(e.target.value);
 		this.setState({ currentYear });
 	};
 
-	onDateClick = (day) => {
-		if (!day) return -1;
-		if (this.isDateToDisable(day)) return -1;
+	onDateClick = (day: string | number | null) => {
+		if (!day) return;
+		if (this.isDateToDisable(day)) return;
 		const englishNumber = this.state.language === 'NE' ? getEnglishNumber(day) : day;
 		this.setState({
 			currentDay: englishNumber,
@@ -256,19 +270,19 @@ class Calendar extends Component {
 				this.state.language === 'NE'
 					? convertFullDateToNepali(
 							this.state.currentYear + '-' + this.state.currentMonth + '-' + englishNumber
-					  )
+						)
 					: getFullEnglishDate(
 							this.state.currentYear + '-' + this.state.currentMonth + '-' + englishNumber
-					  )
+						)
 			)
 		);
 	};
 
-	formatDate = (fullDate) => {
+	formatDate = (fullDate: string) => {
 		const splittedDate = fullDate.split('-');
 
 		if (splittedDate.length !== 3) {
-			console.log('error spliting the date');
+			console.log('error splitting the date');
 			return -1;
 		}
 		this.setState({ selectedDate: fullDate });
@@ -309,14 +323,14 @@ class Calendar extends Component {
 		if (dateFormat.includes('MMMM')) {
 			dateFormat = dateFormat.replace(
 				'MMMM',
-				getFormattedMonth(this.validateLanguage(this.props.language), month)
+				getFormattedMonth(this.validateLanguage(this.props.language), parseInt(month))
 			);
 		} else if (dateFormat.includes('MM')) {
 			dateFormat = dateFormat.replace('MM', month);
 		} else if (dateFormat.includes('M')) {
 			dateFormat = dateFormat.replace(
 				'M',
-				(month[0] === '0') | (month[0] === '०') ? month.substring(1) : month
+				month[0] === '0' || month[0] === '०' ? month.substring(1) : month
 			);
 		}
 		// weekdays format
@@ -337,14 +351,14 @@ class Calendar extends Component {
 		} else if (dateFormat.includes('D')) {
 			dateFormat = dateFormat.replace(
 				'D',
-				(day[0] === '0') | (day[0] === '०') ? day.substring(1) : day
+				day[0] === '0' || day[0] === '०' ? day.substring(1) : day
 			);
 		}
-		this.setState({ formatedDate: dateFormat });
+		this.setState({ formattedDate: dateFormat });
 		return { bsDate: dateFormat, adDate: AdDate };
 	};
 
-	isDateToDisable = (td) => {
+	isDateToDisable = (td: number | string) => {
 		td = this.state.language === 'NE' ? getEnglishNumber(td) : td;
 		const minDate = this.validateDate(this.props.minDate) ? this.props.minDate : '--';
 		const maxDate = this.validateDate(this.props.maxDate) ? this.props.maxDate : '--';
@@ -367,19 +381,19 @@ class Calendar extends Component {
 			(this.state.currentYear === minYear &&
 				this.state.currentMonth === minMonth &&
 				td <= minDay) ||
-			(this.state.currentYear === maxYear && this.state.currentMonth === maxMonth && td >= maxDay)
+			(this.state.currentYear === maxYear &&
+				this.state.currentMonth === maxMonth &&
+				(typeof td === 'string' ? parseInt(td) : td) >= maxDay)
 		) {
 			return true;
 		}
+		return false;
 	};
 
-	validateDate = (date) => {
-		if (!date) {
-			return false;
-		}
-		if (date.split('-').length !== 3) {
-			return false;
-		}
+	validateDate = (date: string) => {
+		if (!date) return false;
+
+		if (date.split('-').length !== 3) return false;
 
 		// everything ok
 		return true;
@@ -396,7 +410,7 @@ class Calendar extends Component {
 					}`}
 				>
 					{this.state.showCalendar && (
-						<div className=''>
+						<>
 							<Header
 								currentMonth={this.state.currentMonth}
 								currentYear={this.state.currentYear}
@@ -430,24 +444,22 @@ class Calendar extends Component {
 										currentMonth={this.state.currentMonth}
 										selectedDate={this.state.selectedDate}
 										theme={this.state.theme}
-										minDate={this.props.minDate}
-										maxDate={this.props.maxDate}
 										isDateToDisable={this.isDateToDisable}
 									/>{' '}
 								</div>
 							</div>
-						</div>
+						</>
 					)}
 				</div>
 				<input
 					ref={this.inputRef}
 					readOnly
 					className={`${styles['react-calendar__input']} ${this.props.className}`}
-					style={{ ...this.props.style }}
+					style={this.props.style}
 					placeholder={this.props.placeholder ?? 'select date'}
 					onClick={() => this.setState({ showCalendar: true })}
 					type='text'
-					defaultValue={this.state.hideDefaultValue ? '' : this.state.formatedDate}
+					defaultValue={this.state.hideDefaultValue ? '' : this.state.formattedDate}
 				/>
 			</div>
 		);
