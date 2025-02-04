@@ -23,7 +23,7 @@ interface Props {
 	theme: string;
 	hideDefaultValue: boolean;
 	defaultDate: string;
-	onChange: any;
+	onChange: (date: { bsDate: string; adDate: string }) => void;
 	style: React.CSSProperties;
 	minDate: string;
 	maxDate: string;
@@ -283,7 +283,7 @@ class Calendar extends Component<Props> {
 
 		if (splittedDate.length !== 3) {
 			console.log('error splitting the date');
-			return -1;
+			throw new Error('Invalid date, make sure date string is separated by -');
 		}
 		this.setState({ selectedDate: fullDate });
 		const year = splittedDate[0];
@@ -355,6 +355,7 @@ class Calendar extends Component<Props> {
 			);
 		}
 		this.setState({ formattedDate: dateFormat });
+
 		return { bsDate: dateFormat, adDate: AdDate };
 	};
 
