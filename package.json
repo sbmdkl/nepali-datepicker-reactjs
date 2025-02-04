@@ -12,9 +12,10 @@
 	"module": "dist/index.esm.js",
 	"types": "dist/index.d.ts",
 	"engines": {
-		"node": ">=10"
+		"node": ">=20"
 	},
 	"scripts": {
+		"prebuild": "rimraf ./dist",
 		"build": "rollup -c",
 		"start": "rollup -c -w",
 		"prepare": "run-s build",
@@ -37,6 +38,7 @@
 		"@types/node": "^22.12.0",
 		"@types/react": "^19.0.8",
 		"@types/react-dom": "^19.0.3",
+		"autoprefixer": "^10.4.20",
 		"babel-eslint": "*",
 		"cross-env": "*",
 		"eslint": "*",
@@ -52,10 +54,12 @@
 		"gh-pages": "*",
 		"microbundle-crl": "*",
 		"npm-run-all": "*",
+		"postcss": "^8.5.1",
 		"prettier": "*",
 		"react": "*",
 		"react-dom": "*",
 		"react-scripts": "*",
+		"rimraf": "^6.0.1",
 		"rollup": "^4.34.1",
 		"rollup-plugin-import-css": "^3.5.8",
 		"rollup-plugin-postcss": "^4.0.2",
