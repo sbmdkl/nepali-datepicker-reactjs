@@ -5,7 +5,7 @@
 # Nepali Datepicker ReactJS
 [![NPM](https://img.shields.io/npm/v/@sbmdkl/nepali-datepicker-reactjs.svg)](https://www.npmjs.com/package/@sbmdkl/nepali-datepicker-reactjs) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-A simple and reusable Datepicker component for React <a href="https://codesandbox.io/s/winter-http-vcou3?file=/src/App.js">demo</a>.
+A simple and reusable Datepicker component for React <a href="https://codesandbox.io/p/sandbox/nepali-date-picker-4dnvzn">demo</a>.
 
 </div>
 
