@@ -20,7 +20,11 @@ import RenderCalendar from './RenderCalendar';
 class Calendar extends Component {
 	static defaultProps = {
 		onChange: () => {},
-		className: '',
+		inputClassName: '',
+    labelClassName: '',
+    containerClassName: "",
+    label: "",
+    name: "",
 		language: 'NE',
 		theme: 'default',
 		dateFormat: 'YYYY-MM-DD',
@@ -295,7 +299,7 @@ class Calendar extends Component {
 		// D  1-30
 		// DD 01-30
 		// DDD Sun, Mon ....
-		// DDDD Sunday, Monday ....
+		// DDDD Sunday, Monday ...`.
 
 		// Year format
 		if (dateFormat.includes('YYYY')) {
@@ -385,6 +389,76 @@ class Calendar extends Component {
 		return true;
 	};
 
+  parseTypedDate = (input) => {
+	const parts = input.split('-');
+	if (parts.length !== 3) return null;
+
+	let [year, month, day] = parts.map(p => parseInt(p, 10));
+
+	if (
+		isNaN(year) || isNaN(month) || isNaN(day) ||
+		year < 2000 || year > 2099 ||
+		month < 1 || month > 12 ||
+		day < 1 || day > 32
+	) {
+		return null;
+	}
+	return { year, month, day };
+};
+handleInputChange = (e) => {
+	let raw = e.target.value.replace(/[^\d]/g, '');
+
+if (raw.length > 8) raw = raw.slice(0, 8);
+
+let year = raw.slice(0, 4);
+let month = raw.slice(4, 6);
+let day = raw.slice(6, 8);
+
+if (month.length === 1 && parseInt(month) > 1) {
+	month = '0' + month;
+}
+if (month && (parseInt(month) < 0 || parseInt(month) > 12)) {
+	month = '12';
+}
+if (day.length === 1 && parseInt(day) > 3) {
+	day = '0' + day;
+}
+
+if (day && (parseInt(day) < 0 || parseInt(day) > 32)) {
+	day = '32';
+}
+let formatted = year;
+if (month) formatted += '-' + month;
+if (day) formatted += '-' + day;
+	this.setState({ selectedDate: formatted });
+	if (formatted.length === 10) {
+  const parsed = this.parseTypedDate(formatted);
+  if (!parsed) return;
+
+  const { year, month, day } = parsed;
+  const englishNumber =
+    this.state.language === 'NE' ? getEnglishNumber(day) : day;
+
+  this.setState({
+    currentYear: year,
+    currentMonth: month,
+    currentDay: day,
+    selectedDate: `${year}-${month}-${day}`,
+    hideDefaultValue: false,
+    showCalendar: false,
+  });
+
+  this.props.onChange(
+    this.formatDate(
+      this.state.language === 'NE'
+        ? convertFullDateToNepali(`${year}-${month}-${englishNumber}`)
+        : getFullEnglishDate(`${year}-${month}-${englishNumber}`)
+    )
+  );
+}
+};
+
+
 	render() {
 		return (
 			<div style={{ position: 'relative' }}>
@@ -439,16 +513,26 @@ class Calendar extends Component {
 						</div>
 					)}
 				</div>
-				<input
+       <div className={this.containerClassName}>
+        <input
+          id={this.props.name}
 					ref={this.inputRef}
-					readOnly
-					className={`${styles['react-calendar__input']} ${this.props.className}`}
-					style={{ ...this.props.style }}
+		    	className={this.props.inputClassName}
 					placeholder={this.props.placeholder ?? 'select date'}
 					onClick={() => this.setState({ showCalendar: true })}
+          onChange={this.handleInputChange}
 					type='text'
-					defaultValue={this.state.hideDefaultValue ? '' : this.state.formatedDate}
+					value={ this.state.selectedDate}
 				/>
+        <label
+                htmlFor={this.props.name}
+                className={this.props.labelClassName}
+              >
+                <div className="flex items-center">
+                  {this.props.label ? (this.props.label) : ""}
+                </div>
+              </label>
+        </div>
 			</div>
 		);
 	}

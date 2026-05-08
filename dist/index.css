@@ -1,9 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+
+Theme CSS
+
+1. header -> background
+2. arrow -> border
+
+Theme Red:
+
+1. header -> {
+  background: red
+}
+
+2. arrow -> {
+  border: solid #fff
+}
+
+
+*/
+
+/* theme default starts */
+._1mUuW {
+  background: #fff;
+}
+._bBYU7 {
+  border: solid #000;
+}
+/* theme default ends */
+
+
+/* theme red starts */
+._3b2pY {
+  background: #eb2f06;
+}
+._3fQ0n {
+  border: solid #fff;
+}
+/* theme red ends */
+
+
+/* theme blue starts */
+._3fNxl {
+  background: #3867d6;
+}
+._16z_f {
+  border: solid #fff;
+}
+/* theme blue ends */
+
+/* theme green starts */
+._CLB6y {
+  background: #05c46b;
+}
+._O7ihw {
+  border: solid #fff;
+}
+/* theme green ends */
+
+/* theme dark starts */
+._-Ua3q {
+  background: #34495e;
+}
+._28F1u {
+  border: solid #fff;
+}
+/* theme dark ends */
+
+/* theme deepdark starts */
+._P6QvD {
+  background: #34495e;
+}
+._1jvha {
+  border: solid #fff;
+}
+/* theme deepdark ends */
+
+._1Op28 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+._1GhOp {
+  align-self: center;
+}
+._3fmCl {
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+._1ydFT { 
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  margin-left: 8px;
+}
+._1Pw8c { 
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  margin-right: 8px;
+}
+._2aNF9 {
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 2px;
+}
 
 * {
 	box-sizing: border-box;
 }
 
-.react-calendar {
+._2xcMq {
 	max-width: 300px;
 	box-shadow: 5px 3px 12px 0px rgba(16, 36, 94, 0.2);
 	position: absolute;
@@ -14,31 +126,31 @@
 	color: #000;
 }
 
-.react-calendar__input {
+._1oYOS {
 	font-size: 16px;
 	line-height: 1.5;
 }
-.react-calendar__days {
+._d8Qqp {
 	display: flex;
 	text-align: center;
 	background-color: #fff;
 }
-.react-calendar__days-day {
+._1yGdK {
 	flex-basis: 14.2857%;
 }
-.react-calendar__dates {
+._1hh2I {
 	justify-content: space-between;
 	display: flex;
 	flex-wrap: wrap;
 	background-color: #fff;
 }
-.react-calendar__dates-date {
+._249_g {
 	padding: 10px 7px;
 	flex-basis: 42px;
 	text-align: center;
 }
 
-.react-calendar__dates-null {
+._3zttl {
 	padding: 10px 21px;
 }
 /*
@@ -87,29 +199,29 @@ Theme White:
 
 */
 /* theme default starts*/
-.theme-react-calendar__dates-date-default:hover,
-.theme-react-calendar__dates-null-default:hover {
+._3zVi3:hover,
+._1plWg:hover {
 	background-color: #e6e6e6;
 	color: #000;
 }
-.theme-react-calendar__dates-date__today-default {
+._WrIdy {
 	color: #008ffd;
 }
-.theme-react-calendar__dates-date__selected-default {
+._1ImcB {
 	background-color: #008ffd;
 	color: #fff;
 }
 
-.theme-react-calendar__dates-date__today-default:hover,
-.theme-react-calendar__dates-date__selected-default:hover {
+._WrIdy:hover,
+._1ImcB:hover {
 	background-color: #008ffd;
 	color: #fff;
 }
 
-.react-calendar__dates-date__disabled-default {
+._1EpF_ {
 	color: #c3c3c3;
 }
-.react-calendar__dates-date__disabled-default:hover {
+._1EpF_:hover {
 	border-radius: 50%;
 	color: #c3c3c3;
 	background: #e6e6e6;
@@ -119,23 +231,23 @@ Theme White:
 /* theme default ends */
 
 /* theme red starts*/
-.theme-react-calendar__dates-date-red:hover,
-.theme-react-calendar__dates-null-red:hover {
+._ZCqJx:hover,
+._3e-oj:hover {
 	background-color: #e6e6e6;
 	color: #000;
 }
 
-.theme-react-calendar__dates-date__today-red {
+._3vljT {
 	color: #eb2f06;
 }
 
-.theme-react-calendar__dates-date__selected-red {
+._3VNRW {
 	background-color: #eb2f06;
 	color: #fff;
 }
 
-.theme-react-calendar__dates-date__today-red:hover,
-.theme-react-calendar__dates-date__selected-red:hover {
+._3vljT:hover,
+._3VNRW:hover {
 	background-color: #c23616;
 	color: #fff;
 }
@@ -143,69 +255,69 @@ Theme White:
 /* theme red ends */
 
 /* theme blue starts*/
-.theme-react-calendar__dates-date-blue:hover,
-.theme-react-calendar__dates-null-blue:hover {
+._2wmIR:hover,
+._3EzT1:hover {
 	background-color: #e6e6e6;
 	color: #000;
 }
 
-.theme-react-calendar__dates-date__today-blue {
+._3gFNc {
 	color: #3867d6;
 }
 
-.theme-react-calendar__dates-date__selected-blue {
+._2nANS {
 	background-color: #3867d6;
 	color: #fff;
 }
 
-.theme-react-calendar__dates-date__today-blue:hover,
-.theme-react-calendar__dates-date__selected-blue:hover {
+._3gFNc:hover,
+._2nANS:hover {
 	background-color: #00487c;
 	color: #fff;
 }
 /* theme blue ends */
 
 /* theme green starts*/
-.theme-react-calendar__dates-date-green:hover,
-.theme-react-calendar__dates-null-green:hover {
+._3xYsN:hover,
+._2_YcJ:hover {
 	background-color: #e6e6e6;
 	color: #000;
 }
 
-.theme-react-calendar__dates-date__today-green {
+._3SPPg {
 	color: #05c46b;
 }
 
-.theme-react-calendar__dates-date__selected-green {
+._3sNLR {
 	background-color: #05c46b;
 	color: #fff;
 }
 
-.theme-react-calendar__dates-date__today-green:hover,
-.theme-react-calendar__dates-date__selected-green:hover {
+._3SPPg:hover,
+._3sNLR:hover {
 	background-color: #0be881;
 	color: #fff;
 }
 /* theme green ends */
 
 /* theme dark starts*/
-.theme-react-calendar__dates-date-dark:hover,
-.theme-react-calendar__dates-null-dark:hover {
+._2eP5_:hover,
+._24Vzw:hover {
 	background-color: #e6e6e6;
 	color: #000;
 }
 
-.theme-react-calendar__dates-date__today-dark {
+._162w5 {
 	color: #34495e;
 }
 
-.theme-react-calendar__dates-date__selected-dark {
+._hp0wX {
 	background-color: #34495e;
 	color: #fff;
 }
 
-.theme-react-calendar__dates-date__today-dark:hover,
-.theme-react-calendar__dates-date__selected-dark:hover {
+._162w5:hover,
+._hp0wX:hover {
 	background-color: #2c3e50;
 	color: #fff;
 }
@@ -213,49 +325,49 @@ Theme White:
 
 /* theme deepdark starts*/
 
-.theme-react-calendar__dates-date-deepdark,
-.theme-react-calendar__dates-null-deepdark {
+._3EEI2,
+._39dGG {
 	color: #fff;
 }
 
-.theme-react-calendar__dates-deepdark {
+._3Rbbx {
 	background-color: #34495e;
 }
 
-.theme-react-calendar__days-deepdark {
+._2ssp5 {
 	background-color: #34495e;
 	color: #fff;
 }
-.theme-react-calendar__dates-date-deepdark:hover,
-.theme-react-calendar__dates-null-deepdark:hover {
+._3EEI2:hover,
+._39dGG:hover {
 	background-color: #2c3e50;
 	color: #fff;
 }
 
-.theme-react-calendar__dates-date__today-deepdark {
+._31Ucq {
 	background-color: #1c3f61;
 	color: #fff;
 }
 
-.theme-react-calendar__dates-date__selected-deepdark {
+._3KUO- {
 	background-color: #2c3e50;
 	color: #fff;
 }
 
-.theme-react-calendar__dates-date__today-deepdark:hover,
-.theme-react-calendar__dates-date__selected-deepdark:hover {
+._31Ucq:hover,
+._3KUO-:hover {
 	background-color: #2c3e50;
 	color: #fff;
 }
 
-.theme-react-calendar-deepdark {
+._3NEDk {
 	background-color: #2c3e50;
 }
 
-.theme-react-calendar__dates-date__disabled-deepdark {
+._24nn5 {
 	color: #c3c3c3;
 }
-.theme-react-calendar__dates-date__disabled-deepdark:hover {
+._24nn5:hover {
 	border-radius: 50%;
 	color: #c3c3c3;
 	background: #34495e !important;
@@ -265,26 +377,26 @@ Theme White:
 
 /* default theme starts*/
 
-.react-calendar__dates-date:hover,
-.react-calendar__dates-null:hover {
+._249_g:hover,
+._3zttl:hover {
 	cursor: pointer;
 }
-.react-calendar__dates-date__today {
+._1oebL {
 	border-radius: 50%;
 }
-.react-calendar__dates-date__selected {
+._FsLy_ {
 	border-radius: 50%;
 }
 
-.react-calendar__dates-date__today:hover,
-.react-calendar__dates-date__selected:hover {
+._1oebL:hover,
+._FsLy_:hover {
 	cursor: pointer;
 }
 
-.react-calendar__dates-date__disabled {
+._3_2T4 {
 	color: #c3c3c3;
 }
-.react-calendar__dates-date__disabled:hover {
+._3_2T4:hover {
 	border-radius: 50%;
 	color: #c3c3c3;
 	background: #e6e6e6;

@@ -17,7 +17,6 @@
 	"scripts": {
 		"build": "microbundle-crl --no-compress --format modern,cjs",
 		"start": "microbundle-crl watch --no-compress --format modern,cjs",
-		"prepare": "run-s build",
 		"test": "run-s test:unit test:lint test:build",
 		"test:build": "run-s build",
 		"test:lint": "eslint --ext .js,.jsx .",
@@ -31,7 +30,8 @@
 		"react": "*"
 	},
 	"devDependencies": {
-		"microbundle-crl": "*",
+		"@babel/eslint-parser": "^7.27.1",
+		"autoprefixer": "^10.4.21",
 		"babel-eslint": "*",
 		"cross-env": "*",
 		"eslint": "*",
@@ -45,13 +45,25 @@
 		"eslint-plugin-react": "*",
 		"eslint-plugin-standard": "*",
 		"gh-pages": "*",
+		"microbundle-crl": "*",
 		"npm-run-all": "*",
+		"postcss": "^8.4.49",
 		"prettier": "*",
 		"react": "*",
 		"react-dom": "*",
-		"react-scripts": "*"
+		"react-scripts": "*",
+		"tailwindcss": "^4.1.7"
 	},
 	"files": [
 		"dist"
-	]
+	],
+	"exports": {
+		".": {
+			"import": "./dist/index.modern.js",
+			"require": "./dist/index.js"
+		}
+	},
+	"dependencies": {
+		"dist": "^0.1.2"
+	}
 }

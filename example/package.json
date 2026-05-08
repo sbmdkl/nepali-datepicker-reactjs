@@ -10,10 +10,13 @@
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
+    "@sbmdkl/nepali-datepicker-reactjs": "link:..",
+    "@tailwindcss/postcss": "^4.1.7",
+    "postcss": "^8.5.3",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "link:../node_modules/react-scripts",
-    "@sbmdkl/nepali-datepicker-reactjs": "link:.."
+    "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
